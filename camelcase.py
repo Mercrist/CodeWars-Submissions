@@ -1,10 +1,11 @@
-def find_uniq(arr):
-    if arr[0] != arr[1]: #when the unique num is the first or second one:
-        if arr.count(arr[0]) == 1:
-            return arr[0]
-        else:
-            return arr[1]
-    else:
-        for elem in arr:
-            if elem != arr[0]:
-                return elem
+def to_camel_case(text):
+    text = list(text)
+    for i in range(len(text)):
+        if text[i-1] == "-" or text[i-1] == "_":
+            text[i] = text[i].upper()
+            text[i-1] = ""
+            continue
+        elif text[i].isupper():
+            text[0] = text[0].upper()
+            continue
+    return "".join(text)
