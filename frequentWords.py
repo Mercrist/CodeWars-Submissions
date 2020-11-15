@@ -1,19 +1,8 @@
+from collections import Counter #supports convenient and rapid tallies
 import re
 def top_3_words(text):
-  if len(text) <= 0:
-    return []
-  
-  checked = {} #words and the frequency they appear in the text
-  regex = re.compile('[,/\.!?]')
-  invalid = """ '''!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
-  for word in text.lower().split():
-    if word not in checked:
-      word = regex.sub('', word)
-      if word not in invalid:
-        checked[word] = text.count(word)
-
-  print(checked["i"])
-  return sorted(checked, key=checked.get, reverse = True)[:3] 
+    counts = Counter(re.findall("'?[a-z][a-z']*", text.lower())) #an unordered collection where elements are stored as dictionary keys and their counts are stored as dictionary values
+    return [w for w, words in counts.most_common(3)]
   
 
 print(top_3_words("""In a village of La Mancha, the name of which I have no desire to call to
